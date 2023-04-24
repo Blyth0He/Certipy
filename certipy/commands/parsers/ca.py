@@ -90,6 +90,9 @@ def add_subparser(subparsers: argparse._SubParsersAction) -> Tuple[str, Callable
         action="store",
         metavar="Machine\\CA",
     )
+    
+    group = subparser.add_argument_group("output options")
+    group.add_argument("-dir", action="store", metavar="output dir")
 
     group = subparser.add_argument_group("connection options")
     group.add_argument(
@@ -112,9 +115,6 @@ def add_subparser(subparsers: argparse._SubParsersAction) -> Tuple[str, Callable
         "If ommited, the domain part (FQDN) "
         "specified in the account parameter will be used",
     )
-
-    group = subparser.add_argument_group("output options")
-    group.add_argument("-dir", action="store", metavar="output dir")
 
     target.add_argument_group(subparser, connection_options=group)
 
