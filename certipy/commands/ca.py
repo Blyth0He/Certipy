@@ -212,6 +212,7 @@ class CA:
         config: str = None,
         timeout: int = 5,
         debug: bool = False,
+        dir: str = None,
         **kwargs
     ):
         self.target = target
@@ -225,6 +226,7 @@ class CA:
         self.config = config
         self.timeout = timeout
         self.verbose = debug
+        self.dir = dir
         self.kwargs = kwargs
 
         self._connection: LDAPConnection = connection
@@ -998,7 +1000,7 @@ class CA:
         logging.info("Retrieving backup")
         try:
             pfx = self.get_backup()
-            with open("pfx.p12", "wb") as f:
+            with open("%s/pfx.p12" % self.dir, "wb") as f:
                 f.write(pfx)
 
             key, cert = load_pfx(pfx, b"certipy")
@@ -1006,7 +1008,7 @@ class CA:
 
             pfx = create_pfx(key, cert)
 
-            pfx_out = "%s.pfx" % common_name.value
+            pfx_out = "%s/%s.pfx" % common_name.value, self.dir
 
             with open(pfx_out, "wb") as f:
                 f.write(pfx)
