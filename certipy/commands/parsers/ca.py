@@ -90,7 +90,7 @@ def add_subparser(subparsers: argparse._SubParsersAction) -> Tuple[str, Callable
         action="store",
         metavar="Machine\\CA",
     )
-    
+
     group = subparser.add_argument_group("output options")
     group.add_argument("-dir", action="store", metavar="output dir")
 

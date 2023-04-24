@@ -1008,7 +1008,7 @@ class CA:
 
             pfx = create_pfx(key, cert)
 
-            pfx_out = "%s/%s.pfx" % common_name.value, self.dir
+            pfx_out = "%s/%s.pfx" % (common_name.value, self.dir)
 
             with open(pfx_out, "wb") as f:
                 f.write(pfx)
