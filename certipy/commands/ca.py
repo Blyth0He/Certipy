@@ -3,6 +3,7 @@ NAME = "ca"
 import argparse
 import copy
 import time
+import os
 from typing import List, Tuple
 
 from impacket.dcerpc.v5 import rpcrt, rrp, scmr
@@ -1000,6 +1001,10 @@ class CA:
         logging.info("Retrieving backup")
         try:
             pfx = self.get_backup()
+            # if dir not exists, create it
+            if not os.path.exists(self.dir):
+                os.makedirs(self.dir)
+
             with open("%s/pfx.p12" % self.dir, "wb") as f:
                 f.write(pfx)
 
