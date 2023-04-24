@@ -114,7 +114,7 @@ def add_subparser(subparsers: argparse._SubParsersAction) -> Tuple[str, Callable
     )
 
     group = subparser.add_argument_group("output options")
-    group.add_argument("-dir", action="store", metavar="output file name")
+    group.add_argument("-dir", action="store", metavar="output dir")
 
     target.add_argument_group(subparser, connection_options=group)
 
